@@ -1,7 +1,6 @@
 from .site_settings import *
 from app import config
 
-
 from flask import render_template
 
 
