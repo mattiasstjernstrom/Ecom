@@ -1,0 +1,39 @@
+<!--prettier-ignore-->
+{# Settings page for diffrent behavior for permanent elements #}
+
+{# Standard behavior for title: #}
+{% macro get_tab_title(site, context) %}
+  {% if context.title and context.description %}
+    {{ site.name }} - {{ context.title }}: {{ context.description }}
+  {% elif context.title and not context.description %}
+    {{ site.name }} - {{ context.title }}
+  {% else %}
+    {{ site.name }}
+  {% endif %}
+{% endmacro %}
+
+<!--prettier-ignore-->
+{# Behavior for css #}
+{% macro get_css(css=None) %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/default.css') }}"
+/>
+{% if not css==None %}
+<!-- No custom css defined, make room for it here -->
+{% else %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/main.css') }}"
+/>
+{% endif %} {% endmacro %}
+
+<!--prettier-ignore-->
+{# Behavior for js #} 
+{% macro get_js(js=None) %} 
+{% if not js=="search" %}
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+{% else %}
+<!-- No js loaded -->
+{% endif %} {% endmacro %}

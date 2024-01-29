@@ -1,0 +1,53 @@
+{% from "macros/_settings.html" import get_tab_title, get_css, get_js with
+context %}
+<!DOCTYPE html>
+<html lang="en" data-theme="{{ settings.theme }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="{{ settings.site.description | default('') }}"
+    />
+    <meta
+      name="keywords"
+      content="{{ settings.site.keywords | default('') }}"
+    />
+    <meta
+      name="author"
+      content="{{ settings.site.author | default(settings.site.name) }}"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <title>{{ get_tab_title(settings.site, context) }}</title>
+    {{ get_css() }} {{ get_js() }}
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>{% include "structures/header.html" %}</header>
+    <main>
+      {% block content %}
+      <p>
+        This page seems to not load properly. Please contact the site
+        administrator.
+      </p>
+
+      {% endblock %}
+    </main>
+    <footer>
+      <section id="footer" class="footer">
+        {% include "structures/footer.html" %}
+      </section>
+    </footer>
+  </body>
+</html>

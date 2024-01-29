@@ -1,0 +1,151 @@
+:root {
+  --primary-color: #dcc4b0;
+  --primary-color: lch(80.8% 14.95 64.99);
+  --accent-color: #59a7a0;
+  --bg-color: #fff;
+
+  --text-color: #333;
+
+  --header-link-color: #333;
+
+  /* CONSTANTS */
+
+  --white: #fff;
+  --grey: #ccc;
+  --warning-color: #f91a4f;
+  --warning-color: lch(54.29% 85.07 23.16);
+  --warning-shadow-color: #c71a42;
+  --warning-shadow-color: oklch(62.89% 0.2621 17.6 / 47.72%);
+}
+html[data-theme="dark"] {
+  --primary-color: #2f4858;
+  --primary-color: lch(29.08% 14.19 243.89);
+  --accent-color: #59a7a0;
+  --bg-color: #333;
+
+  --text-color: #fff;
+
+  --header-link-color: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-width: 0%;
+}
+
+html {
+  font-family: "Roboto", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+@keyframes roll-down {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 80px;
+  }
+}
+
+@keyframes roll-up {
+  0% {
+    max-height: 80px;
+  }
+  100% {
+    max-height: 0;
+  }
+}
+
+.error,
+.error:has(input:focus) {
+  border: 1px solid var(--warning-color);
+  outline: 1px solid var(--warning-color);
+  box-shadow: 0 0 5px 1px var(--warning-color);
+  animation: shake 0.4s reverse;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.pulse {
+  animation: pulse 1s infinite;
+}
+@keyframes pulse {
+  0% {
+    scale: 1.4;
+  }
+  50% {
+    scale: 1;
+  }
+  100% {
+    scale: 1.4;
+  }
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+/* Container system */
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(0.1em, 1fr));
+  grid-template-rows: min-content 1fr min-content;
+  grid-template-areas:
+    ". header header header header header ."
+    ". main main main main main ."
+    "footer footer footer footer footer footer footer";
+}
+
+@media (max-width: 768px) {
+  body {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: min-content 1fr min-content;
+    grid-template-areas:
+      "header header header header header"
+      "main main main main main"
+      "footer footer footer footer footer";
+  }
+  body > * {
+    padding: 0.5rem 1rem 0 1rem;
+  }
+}
+
+header {
+  grid-area: header;
+}
+
+main {
+  grid-area: main;
+}
+
+footer {
+  grid-area: footer;
+}
